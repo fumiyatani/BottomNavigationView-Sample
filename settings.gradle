@@ -1,0 +1,2 @@
+rootProject.name = "ButtomNavigationView"
+include ':app'
