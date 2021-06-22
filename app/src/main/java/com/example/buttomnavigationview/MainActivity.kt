@@ -1,14 +1,15 @@
 package com.example.buttomnavigationview
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.forEach
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.buttomnavigationview.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -36,7 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         // ここでViewが撮れるってことは、すげ替え可能。
         // https://blog.shoheikawano.com/entry/controlling_bottom_nav_item_view_long_click
-        val a = binding.navView
-//        a.background = getDrawable(R.drawable.circle_background)
+        binding.navView.menu.forEach {
+            if (it.itemId == R.id.navigation_dashboard) {
+                val item = binding.navView.findViewById<View>(it.itemId)
+                item.background = AppCompatResources.getDrawable(this, R.drawable.circle_background)
+            }
+        }
     }
 }
