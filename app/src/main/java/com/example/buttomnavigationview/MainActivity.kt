@@ -2,6 +2,8 @@ package com.example.buttomnavigationview
 
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.forEach
@@ -10,6 +12,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.buttomnavigationview.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -39,8 +43,13 @@ class MainActivity : AppCompatActivity() {
         // https://blog.shoheikawano.com/entry/controlling_bottom_nav_item_view_long_click
         binding.navView.menu.forEach {
             if (it.itemId == R.id.navigation_dashboard) {
-                val item = binding.navView.findViewById<View>(it.itemId)
-                item.background = AppCompatResources.getDrawable(this, R.drawable.circle_background)
+                val item = binding.navView.findViewById<BottomNavigationItemView>(it.itemId)
+                val background = AppCompatResources.getDrawable(this@MainActivity, R.drawable.circle_background)
+                val backgroundImageView = ImageView(this).apply {
+                    setImageDrawable(background)
+                    layoutParams = FrameLayout.LayoutParams(56, 56)
+                }
+                item.addView(backgroundImageView, 0)
             }
         }
     }
