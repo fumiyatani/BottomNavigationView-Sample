@@ -1,9 +1,12 @@
 package com.example.buttomnavigationview
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.forEach
@@ -47,7 +50,11 @@ class MainActivity : AppCompatActivity() {
                 val background = AppCompatResources.getDrawable(this@MainActivity, R.drawable.circle_background)
                 val backgroundImageView = ImageView(this).apply {
                     setImageDrawable(background)
-                    layoutParams = FrameLayout.LayoutParams(56, 56)
+                    layoutParams = FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.WRAP_CONTENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        Gravity.CENTER
+                    )
                 }
                 item.addView(backgroundImageView, 0)
             }
